@@ -79,19 +79,11 @@ a:hover {
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: calc(50% - 20px); /* Max width to fit two items in a row */
+  max-width: calc(25% - 20px); /* Max width to fit two items in a row */
   text-align: center; /* Align text to the center */
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-  .pricing-options div {
-    flex: 1 0 calc(100% - 20px); /* One item per row with gap */
-    max-width: calc(100% - 20px); /* Max width for one item per row */
-  }
 }
 
   
