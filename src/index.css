@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 67% 95%; /* Whisper */
+    --foreground: 0 0% 12%; /* Midnight Ash */
+    
+    --card: 40 31% 92%; /* Soft Cloud */
+    --card-foreground: 0 0% 12%; /* Midnight Ash */
+    
+    --popover: 40 31% 92%; /* Soft Cloud */
+    --popover-foreground: 0 0% 12%; /* Midnight Ash */
+    
+    --primary: 48 33% 91%; /* Off-White */
+    --primary-foreground: 0 0% 12%; /* Midnight Ash */
+    
+    --secondary: 0 0% 12%; /* Midnight Ash */
+    --secondary-foreground: 40 67% 95%; /* Whisper */
+    
+    --muted: 40 31% 92%; /* Soft Cloud */
+    --muted-foreground: 0 0% 40%; /* Medium Gray (replaces Pebble) */
+    
+    --accent: 48 33% 91%; /* Off-White */
+    --accent-foreground: 0 0% 12%; /* Midnight Ash */
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 40 31% 88%; /* Lighter Pebble / Darker Soft Cloud */
+    --input: 40 31% 88%; /* Lighter Pebble / Darker Soft Cloud */
+    --ring: 48 33% 91%; /* Off-White */
+    
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 0 0% 10%; /* Very Dark Grey, darker than Midnight Ash */
+    --foreground: 40 67% 95%; /* Whisper */
+    
+    --card: 0 0% 12%; /* Midnight Ash */
+    --card-foreground: 40 67% 95%; /* Whisper */
+    
+    --popover: 0 0% 12%; /* Midnight Ash */
+    --popover-foreground: 40 67% 95%; /* Whisper */
+    
+    --primary: 48 20% 55%; /* Darker Muted Off-White */
+    --primary-foreground: 0 0% 10%; /* Very Dark Grey for contrast on primary */
+    
+    --secondary: 0 0% 12%; /* Midnight Ash */
+    --secondary-foreground: 40 67% 95%; /* Whisper */
+    
+    --muted: 0 0% 15%; /* Slightly lighter than dark card background */
+    --muted-foreground: 48 20% 65%; /* Lighter Muted Off-White for muted text */
+    
+    --accent: 48 20% 55%; /* Darker Muted Off-White */
+    --accent-foreground: 40 67% 95%; /* Whisper */
+    
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 0 0% 20%; /* Darker than card, lighter than background */
+    --input: 0 0% 20%; /* Darker than card, lighter than background */
+    --ring: 48 20% 55%; /* Darker Muted Off-White */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Montserrat', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
+
+.hero-overlay {
+  background: linear-gradient(to bottom, hsla(var(--background) / 0.1), hsla(var(--background) / 0.4));
+}
+
+.dark .hero-overlay {
+   background: linear-gradient(to bottom, hsla(var(--foreground) / 0.2), hsla(var(--foreground) / 0.5));
+}
+
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 300px;
+  grid-auto-flow: dense;
+  gap: 1rem;
+}
+
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-item.wide {
+  grid-column: span 2;
+}
+
+.gallery-item.tall {
+  grid-row: span 2;
+}
+
+.gallery-item.large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 250px;
+  }
+  
+  .gallery-item.wide,
+  .gallery-item.tall,
+  .gallery-item.large {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+.testimonial-card {
+  backdrop-filter: blur(10px);
+  background-color: hsla(var(--card) / 0.5); 
+  border: 1px solid hsla(var(--border) / 0.2); 
+}
+
+.dark .testimonial-card {
+  background-color: hsla(var(--card) / 0.5); 
+  border: 1px solid hsla(var(--border) / 0.2);
+}
+
+
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px hsla(var(--primary) / 0.2);
+}
+
+.dark .service-card:hover {
+  box-shadow: 0 10px 25px hsla(var(--primary) / 0.3);
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: hsl(var(--primary));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
